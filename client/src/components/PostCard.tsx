@@ -102,7 +102,6 @@ export default function PostCard({ post }: PostCardProps) {
 	}, [croppedImage]);
 
 	useEffect(() => {
-		console.log('selectedImage', selectedImage);
 		if (selectedImage) {
 			const url = URL.createObjectURL(selectedImage);
 			setSelectedImageURL(url);
@@ -111,7 +110,6 @@ export default function PostCard({ post }: PostCardProps) {
 
 	const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files && event.target.files.length > 0) {
-			console.log('file changed');
 			setCropper(null);
 			setSelectedImage(event.target.files[0]);
 			setShowCropperModal(true);

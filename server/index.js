@@ -17,6 +17,7 @@ const PORT = Number(env.PORT) || 8000;
 const SERVER_DOMAIN = env.SERVER_DOMAIN || 'http://localhost:8000';
 const CLIENT_DOMAIN = env.CLIENT_DOMAIN || 'http://localhost:3000';
 
+console.log('CLIENT_DOMAIN', CLIENT_DOMAIN);
 app.use(
 	cors({
 		origin: CLIENT_DOMAIN,

@@ -85,7 +85,6 @@ export default function PostForm({ selectedDate, handleModalClose }: PostFormPro
 	useEffect(() => {
 		return () => {
 			if (croppedImageURL) {
-				console.log('postForm revoked');
 				URL.revokeObjectURL(croppedImageURL);
 			}
 		};

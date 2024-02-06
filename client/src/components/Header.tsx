@@ -1,11 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
 import { loginState } from '../utils/state';
 import { useRecoilState } from 'recoil';
-
+import { useAuth } from '../utils/hooks/useAuth';
 import { __Navbar, __Container, __NavbarBrand, __Nav, __NavLink, __BrandTitle } from '../styles/__components/__Header';
 
 export default function Header() {
-	const [isLoggedIn, setIsLoggedIn] = useRecoilState(loginState);
+	const isLoggedIn = useAuth();
 
 	return (
 		<>

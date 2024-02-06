@@ -10,6 +10,7 @@ import {
 	__Description,
 } from '../styles/__pages/__WelcomePage';
 import { __PageWrapper } from '../styles/__pages/__Global';
+import { useAuth } from '../utils/hooks/useAuth';
 
 export default function WelcomePage() {
 	return (

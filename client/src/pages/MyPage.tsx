@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { loginState, userInfoState, axiosUploadingProgressState } from '../utils/state';
+import { loginState, userInfoState } from '../utils/state';
 import { useRecoilState, useResetRecoilState } from 'recoil';
-import { getUser, requestLogout, patchUser, deleteUser } from '../utils/axios';
+import { requestLogout, patchUser, deleteUser } from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import NameForm from '../components/NameForm';
@@ -87,13 +87,11 @@ export default function MyPage() {
 
 	const handleFileUpload = async () => {
 		if (!croppedImage) {
-			console.log('no file selected');
 			return;
 		}
 		const formData = new FormData();
 		formData.append('file', croppedImage);
 		const { result, message, data } = await patchUser(formData);
-		console.log(data);
 		if (result) {
 			alert(message);
 			setUserInfo(data);

@@ -22,7 +22,7 @@ export const useAuth = () => {
 			} else {
 				resetLoginState();
 				resetUserInfoState();
-				navigate('/signin');
+				navigate('/');
 			}
 		};
 

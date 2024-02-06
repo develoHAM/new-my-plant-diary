@@ -33,12 +33,10 @@ import {
 
 import { __CalendarDotContainer, __CalendarDot } from '../styles/__components/__Calendar';
 import PostForm from '../components/PostForm';
-import { useLocation } from 'react-router-dom';
 
 export default function CalendarPage() {
 	const isLoggedIn = useAuth();
-	const location = useLocation();
-	console.log('location.pathname', location.pathname);
+
 	const [postsState, setPostsState] = useRecoilState(userPostsState);
 	const [calendarDate, setCalendarDate] = useState(dayjs(new Date()).format('YYYY-MM-DD'));
 	const sortedPosts = useRecoilValue(filteredUserPostsState(calendarDate));

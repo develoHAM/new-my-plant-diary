@@ -63,7 +63,6 @@ export default async function getCroppedImg(imageSrc: string, pixelCrop: Area, r
 			if (!blob) {
 				throw new Error('Failed to create blob.');
 			}
-			console.log(blob);
 			resolve(blob);
 		}, 'image/png');
 	});

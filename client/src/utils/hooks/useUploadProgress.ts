@@ -8,7 +8,6 @@ export const useUploadProgress = () => {
 		const { loaded, total } = progressEvent;
 		if (total) {
 			const percentage = Math.floor((loaded * 100) / total);
-			console.log('upload', percentage);
 
 			// Update Recoil state with the upload progress
 			setUploadProgress({ isLoading: true, percentage });

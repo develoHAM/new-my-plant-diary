@@ -31,7 +31,6 @@ export default function ImageCropper({
 	useEffect(() => {
 		return () => {
 			if (imgURL) {
-				console.log('cropper revoked');
 				URL.revokeObjectURL(imgURL);
 			}
 		};
@@ -62,7 +61,6 @@ export default function ImageCropper({
 			setLoading(true);
 			const imgBlob = await getCroppedImg(imgURL, croppedArea);
 			const croppedImageFile = new File([imgBlob], 'image.png', { type: 'image/png' });
-			console.log('croppedImageFile', croppedImageFile);
 			const cropperState = {
 				crop: crop,
 				zoom: zoom,
