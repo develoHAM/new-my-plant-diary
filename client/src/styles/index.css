@@ -1,0 +1,67 @@
+@font-face {
+	font-family: 'TTWanjudaedunsancheB';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/TTWanjudaedunsancheB.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TAEBAEKmilkyway';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	line-height: 1;
+	font-family: 'TTWanjudaedunsancheB';
+	width: 100vw;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+.form-range:focus::-webkit-slider-thumb {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(0, 74, 6, 0.25);
+}
+.form-range:focus::-moz-range-thumb {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(0, 74, 6, 0.25);
+}
+
+.form-range::-webkit-slider-thumb {
+	background-color: #304d30;
+}
+
+.form-range::-webkit-slider-thumb:active {
+	background-color: #163020;
+}
+.form-range::-webkit-slider-runnable-track {
+	background-color: #b6c4b6;
+}
+
+.form-range::-moz-range-thumb {
+	background-color: #304d30;
+}
+
+.form-range::-moz-range-thumb:active {
+	background-color: #163020;
+}
+.form-range::-moz-range-track {
+	background-color: #b6c4b6;
+}
+
+.custom-modal {
+	max-width: 500px;
+	width: 500px;
+	min-width: 500px;
+	padding: 0;
+}
