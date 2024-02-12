@@ -10,7 +10,6 @@ import ImageCropper from './ImageCropper';
 import {
 	__FormContainer,
 	__AddImageIconContainer,
-	__ImageContainer,
 	__FileInput,
 	__AddImagePlaceHolderIcon,
 	__Form,
@@ -18,15 +17,13 @@ import {
 	__FormInput,
 	__FormTextArea,
 	__FormInputWrapper,
-	__ValidationContainer,
-	__Validation,
 	__SubmitButton,
 	__ImageWrapper,
 	__Image,
 	__FormRow,
-	__BasicInfoCol,
-	__ImageCol,
-	__TextAreaCol,
+	__FormImageCol,
+	__FormInputCol,
+	__FormControlsCol,
 	__ImageCropperModal,
 	__ImageCropperModalHeader,
 	__ImageCropperModalTitle,
@@ -167,96 +164,104 @@ export default function PostForm({ selectedDate, handleModalClose }: PostFormPro
 	};
 
 	return (
-		<__FormContainer>
-			<__Form onSubmit={handleSubmit(uploadPost)}>
-				<__FormRow>
-					<__ImageCol lg={6}>
-						{!croppedImageURL && (
-							<__AddImageIconContainer onClick={triggerImageSelect}>
-								<__AddImagePlaceHolderIcon />
-								<__FileInput
-									type={'file'}
-									accept={'image/*'}
-									onChange={handleFileChange}
-									ref={imageInputRef}
-								/>
-							</__AddImageIconContainer>
-						)}
-
-						{croppedImageURL && (
-							<__ImageWrapper>
-								<__Image src={croppedImageURL} />
-								<__ControlsContainer>
-									<__CropButton onClick={openImageCropper} />
-									<__RemoveButton onClick={resetSelectedImage} />
-								</__ControlsContainer>
-							</__ImageWrapper>
-						)}
-
-						{/* ---------Modal----------------------------------- */}
-						<__ImageCropperModal show={showCropperModal} backdrop={'static'} keyboard={false} size={'xl'}>
-							<__ImageCropperModalBody>
-								{selectedImage && (
-									<ImageCropper
-										imgFile={selectedImage}
-										setCroppedImage={setCroppedImage}
-										setSelectedImage={setSelectedImage}
-										closeImageCropper={closeImageCropper}
-										cropper={cropper}
-										setCropper={setCropper}
+		<>
+			<__FormContainer>
+				<__Form onSubmit={handleSubmit(uploadPost)}>
+					<__FormRow>
+						<__FormImageCol xs={12} sm={12} md={12} lg={6}>
+							{!croppedImageURL && (
+								<__AddImageIconContainer onClick={triggerImageSelect}>
+									<__AddImagePlaceHolderIcon />
+									<__FileInput
+										type={'file'}
+										accept={'image/*'}
+										onChange={handleFileChange}
+										ref={imageInputRef}
 									/>
-								)}
-							</__ImageCropperModalBody>
-						</__ImageCropperModal>
-					</__ImageCol>
-					<__BasicInfoCol lg={6}>
-						<__FormInputWrapper>
-							<__FormLabel>제목</__FormLabel>
-							<__FormInput
-								type={'text'}
-								{...register('title', {
-									required: '제목을 입력해주세요.',
-									validate: {
-										emptyCheck: (value) =>
-											value.trim().length < 1 ? '제목을 입력해주세요.' : undefined,
-									},
-								})}
-							/>
-						</__FormInputWrapper>
-						<__FormInputWrapper>
-							<__FormLabel>반려식물 이름</__FormLabel>
-							<__FormInput
-								type={'text'}
-								{...register('plant', {
-									required: '반려 식물의 이름을 입력해주세요.',
-									validate: {
-										emptyCheck: (value) =>
-											value.trim().length < 1 ? '반려 식물의 이름을 입력해주세요.' : undefined,
-									},
-								})}
-							/>
-						</__FormInputWrapper>
-					</__BasicInfoCol>
-					<__TextAreaCol lg={12}>
-						<__FormInputWrapper>
-							<__FormLabel>내용</__FormLabel>
-							<__FormTextArea
-								{...register('content', {
-									required: '내용을 입력해주세요.',
-									validate: {
-										emptyCheck: (value) =>
-											value.trim().length < 1 ? '내용을 입력해주세요.' : undefined,
-									},
-								})}
-							/>
-						</__FormInputWrapper>
-					</__TextAreaCol>
-				</__FormRow>
+								</__AddImageIconContainer>
+							)}
 
-				<__SubmitButton type='submit' disabled={!isValid}>
-					저장
-				</__SubmitButton>
-			</__Form>
-		</__FormContainer>
+							{croppedImageURL && (
+								<__ImageWrapper>
+									<__Image src={croppedImageURL} />
+									<__ControlsContainer>
+										<__CropButton onClick={openImageCropper} />
+										<__RemoveButton onClick={resetSelectedImage} />
+									</__ControlsContainer>
+								</__ImageWrapper>
+							)}
+						</__FormImageCol>
+						<__FormInputCol xs={12} sm={12} md={12} lg={6}>
+							<__FormInputWrapper>
+								<__FormLabel $error={errors.title ? true : false}>제목</__FormLabel>
+								<__FormInput
+									type={'text'}
+									{...register('title', {
+										required: '제목을 입력해주세요.',
+										validate: {
+											emptyCheck: (value) =>
+												value.trim().length < 1 ? '제목을 입력해주세요.' : undefined,
+										},
+									})}
+								/>
+							</__FormInputWrapper>
+							<__FormInputWrapper>
+								<__FormLabel $error={errors.plant ? true : false}>반려식물 이름</__FormLabel>
+								<__FormInput
+									type={'text'}
+									{...register('plant', {
+										required: '반려 식물의 이름을 입력해주세요.',
+										validate: {
+											emptyCheck: (value) =>
+												value.trim().length < 1
+													? '반려 식물의 이름을 입력해주세요.'
+													: undefined,
+										},
+									})}
+								/>
+							</__FormInputWrapper>
+							<__FormInputWrapper>
+								<__FormLabel $error={errors.content ? true : false}>내용</__FormLabel>
+								<__FormTextArea
+									{...register('content', {
+										required: '내용을 입력해주세요.',
+										validate: {
+											emptyCheck: (value) =>
+												value.trim().length < 1 ? '내용을 입력해주세요.' : undefined,
+										},
+									})}
+								/>
+							</__FormInputWrapper>
+						</__FormInputCol>
+						<__FormControlsCol xs={12} sm={12} md={12} lg={12}>
+							<__SubmitButton type='submit' disabled={!isValid}>
+								저장
+							</__SubmitButton>
+						</__FormControlsCol>
+					</__FormRow>
+				</__Form>
+			</__FormContainer>
+			{/* ---------Modal----------------------------------- */}
+			<__ImageCropperModal
+				show={showCropperModal}
+				backdrop={'static'}
+				keyboard={false}
+				size={'xl'}
+				dialogClassName='image-cropper-modal'>
+				<__ImageCropperModalBody>
+					{selectedImage && (
+						<ImageCropper
+							imgFile={selectedImage}
+							setCroppedImage={setCroppedImage}
+							setSelectedImage={setSelectedImage}
+							closeImageCropper={closeImageCropper}
+							cropper={cropper}
+							setCropper={setCropper}
+						/>
+					)}
+				</__ImageCropperModalBody>
+			</__ImageCropperModal>
+			{/* ------------------------------------------ */}
+		</>
 	);
 }

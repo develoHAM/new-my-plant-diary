@@ -20,7 +20,7 @@ export default function WelcomePage() {
 					<__TextCol>
 						<__TextStack>
 							<__Title>My Plant Diary</__Title>
-							<__Description>반려 식물들의 성장을 매일 기록해 보세요.</__Description>
+							<__Description> 로그인후 반려 식물들의 성장을 매일 기록해 보세요.</__Description>
 						</__TextStack>
 					</__TextCol>
 					<__ImageCol>

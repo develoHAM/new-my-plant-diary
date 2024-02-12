@@ -61,7 +61,7 @@ export default function SignupForm() {
 					<__Label>이메일 주소</__Label>
 					<__InputWrapper $highlight={inputFocus.email}>
 						<__Input
-							type={'text'}
+							type={'email'}
 							{...register('email', {
 								required: '이메일 주소를 정확히 입력해주세요.',
 								pattern: {

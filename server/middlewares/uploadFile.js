@@ -1,7 +1,7 @@
 import multer from 'multer';
 import multerS3 from 'multer-s3-transform';
 import AWS from 'aws-sdk';
-import sharp from 'sharp';
+// import sharp from 'sharp';
 
 const env = process.env;
 
@@ -26,23 +26,24 @@ const S3Storage = multerS3({
 	bucket: env.S3_BUCKET,
 	acl: 'public-read',
 	contentType: multerS3.AUTO_CONTENT_TYPE,
-	shouldTransform: true,
-	transforms: [
-		{
-			id: 'resized',
-			key: function (req, file, cb) {
-				const location = req.query.location || 'default'; // profile | posts
-				const extension = file.originalname.split('.').pop();
-				const filePath = `uploads/${req.user.id}/${location}/${Date.now()}.${extension}`;
-				cb(null, filePath);
-			},
-			transform: function (req, file, cb) {
-				const width = Number(req.query.width) || 100;
-				const height = Number(req.query.height) || 100;
-				cb(null, sharp().resize(width, height, { fit: 'inside' }));
-			},
-		},
-	],
+	shouldTransform: false,
+	// transforms: [
+	// 	{
+	// 		id: 'resized',
+	// 		key: function (req, file, cb) {
+	// 			const location = req.query.location || 'default'; // profile | posts
+	// 			const extension = file.originalname.split('.').pop();
+	// 			const filePath = `uploads/${req.user.id}/${location}/${Date.now()}.${extension}`;
+	// 			cb(null, filePath);
+	// 		},
+	// 		transform: function (req, file, cb) {
+	// 			const width = Number(req.query.width) || 100;
+	// 			const height = Number(req.query.height) || 100;
+	// 			cb(null, sharp().resize(width, height, { fit: 'inside' }));
+	// 			cb(null);
+	// 		},
+	// 	},
+	// ],
 });
 
 const upload = multer({ storage: env.NODE_ENV == 'development' ? localStorage : S3Storage });

@@ -8,16 +8,16 @@ export const __Background = styled.div``;
 export const __CropperContainer = styled.div`
 	position: relative;
 	width: 100%;
-	height: 40vh;
+	height: 50vh;
+	max-height: 60vh;
 	background-color: rgb(90, 90, 90, 0.6);
 `;
 
 export const __ControlsContainer = styled.div`
-	/* position: absolute; */
 	width: 100%;
 	background-color: white;
 	bottom: 0;
-	padding: 2%;
+	padding: 4% 0;
 `;
 
 export const __ZoomSliderContainer = styled.div`
@@ -27,19 +27,27 @@ export const __ZoomSliderContainer = styled.div`
 `;
 
 export const __ZoomSlider = styled.input`
-	width: 50%;
+	width: 80%;
+	max-width: 20rem;
 `;
 
 export const __ButtonsContainer = styled.div`
-	width: 50%;
+	width: 80%;
+	max-width: 16rem;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
+	align-items: center;
 	margin: auto;
+	height: 6rem;
 `;
 
 export const __Button = styled.button`
+	font-size: 0.8rem;
+	width: 100%;
+	margin: 0 0.6rem;
+	height: 3rem;
 	border: none;
-	padding: 0.4rem;
+	padding: 0.2rem;
 	border-radius: 8px;
 	&:hover {
 		background-color: ${CSS.GREEN_SAGE};
@@ -47,5 +55,7 @@ export const __Button = styled.button`
 `;
 
 export const __Spinner = styled(Spinner)`
-	color: ${CSS.GREEN_SAGE};
+	min-width: 2rem;
+	min-height: 2rem;
+	color: ${CSS.WHITE};
 `;

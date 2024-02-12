@@ -53,6 +53,8 @@ export default function ImageCropper({
 	}, [imgFile]);
 
 	const onCropComplete = (croppedAreaPercentage: Area, croppedAreaPixels: Area) => {
+		// console.log('percentage', croppedAreaPercentage);
+		// console.log('pixels', croppedAreaPixels);
 		setCroppedArea(croppedAreaPixels);
 	};
 
@@ -118,7 +120,9 @@ export default function ImageCropper({
 				<__ButtonsContainer>
 					<__Button onClick={onCancel}>취소</__Button>
 					<__Button onClick={onReset}>초기화</__Button>
-					{loading ? <__Spinner /> : <__Button onClick={onCrop}>자르기</__Button>}
+					<__Button onClick={onCrop} disabled={loading}>
+						{loading ? <__Spinner /> : '자르기'}
+					</__Button>
 				</__ButtonsContainer>
 			</__ControlsContainer>
 		</__Background>

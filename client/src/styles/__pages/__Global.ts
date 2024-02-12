@@ -3,10 +3,6 @@ import Container from 'react-bootstrap/Container';
 import * as CSS from '../constants';
 
 export const __PageWrapper = styled(Container)`
-	padding: 0;
-	margin: auto;
-	min-width: 100%;
-	display: flex;
-	justify-content: center;
+	width: 100vw;
 	background-color: white;
 `;

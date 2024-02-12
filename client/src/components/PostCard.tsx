@@ -19,7 +19,6 @@ import {
 	__Modal,
 	__ModalHeader,
 	__ModalBody,
-	__ModalFooter,
 	__PostImage,
 	__CardImageOverlay,
 	__CardCol,
@@ -60,6 +59,11 @@ import {
 	__PostButtonsContainer,
 	__Spinner,
 	__PostFormContainer,
+	__PostFormRow,
+	__PostFormImageCol,
+	__PostFormInfoCol,
+	__PostFormControlsCol,
+	__HeaderInputContainer,
 } from '../styles/__components/__PostCard';
 import { useNavigate } from 'react-router-dom';
 
@@ -151,7 +155,7 @@ export default function PostCard({ post }: PostCardProps) {
 		};
 		formData.append('postData', JSON.stringify(postData));
 
-		const { result, message, data } = await patchPost(post.id, formData, { width: 300, height: 400 });
+		const { result, message, data } = await patchPost(post.id, formData, { width: 400, height: 500 });
 		if (result) {
 			const response = await getPosts();
 			clearEditForm();
@@ -226,9 +230,9 @@ export default function PostCard({ post }: PostCardProps) {
 				backdrop={isEditing ? 'static' : true}
 				size={'lg'}
 				onExited={clearEditForm}
-				dialogClassName='custom-modal'>
-				<__ModalHeader>
-					{!isEditing && (
+				dialogClassName={'custom-modal'}>
+				{!isEditing && (
+					<__ModalHeader>
 						<__Dropdown>
 							<__DropdownToggle>
 								<__DotsIcon />
@@ -243,114 +247,131 @@ export default function PostCard({ post }: PostCardProps) {
 								<__DropdownItem onClick={handleDeletePost}>삭제</__DropdownItem>
 							</__DropdownMenu>
 						</__Dropdown>
-					)}
-				</__ModalHeader>
+					</__ModalHeader>
+				)}
 				<__ModalBody>
 					{isEditing ? (
 						<__PostFormContainer>
-							<__ImagePreviewContainer>
-								{(post.img || croppedImageURL) && <__ImagePreview src={croppedImageURL || post.img} />}
-								<__ImageOverlay>
-									<__ImageEditControlsContainer>
-										<__SelectImageButton onClick={triggerImageSelect} />
-										{selectedImage && (
-											<>
-												<__CropImageButton
-													onClick={() => {
-														setShowCropperModal(true);
-													}}
-												/>
-												<__CancelSelectButton onClick={clearImage} />
-											</>
-										)}
-									</__ImageEditControlsContainer>
-
-									<__FileInput
-										type={'file'}
-										accept={'image/*'}
-										onChange={onFileChange}
-										onClick={resetFile}
-										ref={imageInputRef}
-									/>
-								</__ImageOverlay>
-							</__ImagePreviewContainer>
-
 							<__Form onSubmit={handleSubmit(editPost)}>
-								<__InputContainer>
-									<__InputLabel>날짜</__InputLabel>
-									<__Input
-										type={'date'}
-										{...register('date', {
-											required: '날짜를 선택해주세요',
-											setValueAs: (value) => dayjs(value).format('YYYY-MM-DD'),
-										})}
-										min={dayjs(new Date(2020, 0, 1)).format('YYYY-MM-DD')}
-										max={dayjs(new Date()).format('YYYY-MM-DD')}
-									/>
-								</__InputContainer>
-								<__InputContainer>
-									<__InputLabel>제목</__InputLabel>
+								<__PostFormRow>
+									<__PostFormImageCol xs={12} sm={12} md={12} lg={6}>
+										<__ImagePreviewContainer>
+											{(post.img || croppedImageURL) && (
+												<__ImagePreview src={croppedImageURL || post.img} />
+											)}
+											<__ImageOverlay>
+												<__ImageEditControlsContainer>
+													<__SelectImageButton onClick={triggerImageSelect} />
+													{selectedImage && (
+														<>
+															<__CropImageButton
+																onClick={() => {
+																	setShowCropperModal(true);
+																}}
+															/>
+															<__CancelSelectButton onClick={clearImage} />
+														</>
+													)}
+												</__ImageEditControlsContainer>
 
-									<__Input
-										type={'text'}
-										{...register('title', {
-											required: '제목을 입력해주세요.',
-											validate: {
-												emptyCheck: (value) =>
-													value.trim().length < 1 ? '제목을 입력해주세요.' : undefined,
-											},
-										})}
-									/>
-								</__InputContainer>
-								<__InputContainer>
-									<__InputLabel>반려식물 이름</__InputLabel>
+												<__FileInput
+													type={'file'}
+													accept={'image/*'}
+													onChange={onFileChange}
+													onClick={resetFile}
+													ref={imageInputRef}
+												/>
+											</__ImageOverlay>
+										</__ImagePreviewContainer>
+									</__PostFormImageCol>
 
-									<__Input
-										type={'text'}
-										{...register('plant', {
-											required: '반려 식물의 이름을 입력해주세요.',
-											validate: {
-												emptyCheck: (value) =>
-													value.trim().length < 1
-														? '반려 식물의 이름을 입력해주세요.'
-														: undefined,
-											},
-										})}
-									/>
-								</__InputContainer>
-								<__TextAreaContainer>
-									<__InputLabel>내용</__InputLabel>
+									<__PostFormInfoCol xs={12} sm={12} md={12} lg={6}>
+										<__HeaderInputContainer>
+											<__InputContainer>
+												<__InputLabel>날짜</__InputLabel>
+												<__Input
+													type={'date'}
+													{...register('date', {
+														required: '날짜를 선택해주세요',
+														setValueAs: (value) => dayjs(value).format('YYYY-MM-DD'),
+													})}
+													min={dayjs(new Date(2020, 0, 1)).format('YYYY-MM-DD')}
+													max={dayjs(new Date()).format('YYYY-MM-DD')}
+												/>
+											</__InputContainer>
+											<__InputContainer>
+												<__InputLabel>제목</__InputLabel>
 
-									<__TextArea
-										{...register('content', {
-											required: '내용을 입력해주세요.',
-											validate: {
-												emptyCheck: (value) =>
-													value.trim().length < 1 ? '내용을 입력해주세요.' : undefined,
-											},
-										})}
-									/>
-								</__TextAreaContainer>
-								<__PostButtonsContainer>
-									{loading ? (
-										<__Spinner />
-									) : (
-										<>
-											<__SubmitButton
-												type={'button'}
-												onClick={handleSubmit(editPost)}
-												disabled={!isValid}>
-												저장
-											</__SubmitButton>
-											<__CancelButton type={'button'} onClick={clearEditForm}>
-												취소
-											</__CancelButton>
-											<__DeleteButton type={'button'} onClick={handleDeletePost}>
-												삭제
-											</__DeleteButton>
-										</>
-									)}
-								</__PostButtonsContainer>
+												<__Input
+													type={'text'}
+													{...register('title', {
+														required: '제목을 입력해주세요.',
+														validate: {
+															emptyCheck: (value) =>
+																value.trim().length < 1
+																	? '제목을 입력해주세요.'
+																	: undefined,
+														},
+													})}
+												/>
+											</__InputContainer>
+											<__InputContainer>
+												<__InputLabel>반려식물 이름</__InputLabel>
+
+												<__Input
+													type={'text'}
+													{...register('plant', {
+														required: '반려 식물의 이름을 입력해주세요.',
+														validate: {
+															emptyCheck: (value) =>
+																value.trim().length < 1
+																	? '반려 식물의 이름을 입력해주세요.'
+																	: undefined,
+														},
+													})}
+												/>
+											</__InputContainer>
+
+											<__TextAreaContainer>
+												<__InputLabel>내용</__InputLabel>
+
+												<__TextArea
+													{...register('content', {
+														required: '내용을 입력해주세요.',
+														validate: {
+															emptyCheck: (value) =>
+																value.trim().length < 1
+																	? '내용을 입력해주세요.'
+																	: undefined,
+														},
+													})}
+												/>
+											</__TextAreaContainer>
+										</__HeaderInputContainer>
+									</__PostFormInfoCol>
+									<__PostFormControlsCol xs={12} sm={12} md={12} lg={12}>
+										<__PostButtonsContainer>
+											{loading ? (
+												<__Spinner />
+											) : (
+												<>
+													<__SubmitButton
+														type={'button'}
+														onClick={handleSubmit(editPost)}
+														disabled={!isValid}>
+														저장
+													</__SubmitButton>
+													<__CancelButton type={'button'} onClick={clearEditForm}>
+														취소
+													</__CancelButton>
+													<__DeleteButton type={'button'} onClick={handleDeletePost}>
+														삭제
+													</__DeleteButton>
+												</>
+											)}
+										</__PostButtonsContainer>
+									</__PostFormControlsCol>
+								</__PostFormRow>
 							</__Form>
 						</__PostFormContainer>
 					) : (
@@ -376,7 +397,12 @@ export default function PostCard({ post }: PostCardProps) {
 				</__ModalBody>
 			</__Modal>
 
-			<__ImageCropperModal show={showCropperModal} backdrop={'static'} keyboard={false} size={'xl'}>
+			<__ImageCropperModal
+				show={showCropperModal}
+				backdrop={'static'}
+				keyboard={false}
+				size={'xl'}
+				dialogClassName={'custom-modal'}>
 				<__ImageCropperModalBody>
 					{selectedImage && (
 						<ImageCropper

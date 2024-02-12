@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Spinner from 'react-bootstrap/Spinner';
@@ -14,7 +15,7 @@ import { HiDotsHorizontal } from 'react-icons/hi';
 import { FaImage } from 'react-icons/fa';
 
 export const __CardCol = styled(Col)`
-	padding: 0;
+	padding: 0 1rem;
 	display: flex;
 	justify-content: center;
 `;
@@ -22,11 +23,10 @@ export const __CardCol = styled(Col)`
 export const __CardImageOverlay = styled(Card.ImgOverlay)`
 	display: none;
 	background: rgba(0, 0, 0, 0.5);
-	color: ${CSS.WHITE};
+	color: white;
 `;
 export const __Card = styled(Card)`
 	width: 100%;
-	max-width: 200px;
 	aspect-ratio: 4/5;
 	border: none;
 	cursor: pointer;
@@ -39,7 +39,7 @@ export const __Card = styled(Card)`
 `;
 export const __CardImage = styled(Card.Img)`
 	width: 100%;
-	height: 100%;
+	aspect-ratio: 4/5;
 `;
 
 export const __CardBody = styled(Card.Body)``;
@@ -57,6 +57,8 @@ export const __Modal = styled(Modal)``;
 
 export const __Dropdown = styled(Dropdown)`
 	margin-left: auto;
+	display: flex;
+	align-items: center;
 `;
 export const __DropdownToggle = styled(Dropdown.Toggle)`
 	border: none;
@@ -85,6 +87,9 @@ export const __DropdownMenu = styled(Dropdown.Menu)`
 `;
 export const __DropdownItem = styled(Dropdown.Item)`
 	font-size: 1rem;
+	&:active {
+		background-color: ${CSS.GREEN_SAGE};
+	}
 `;
 
 export const __DotsIcon = styled(HiDotsHorizontal)`
@@ -93,38 +98,60 @@ export const __DotsIcon = styled(HiDotsHorizontal)`
 `;
 
 export const __ModalHeader = styled(Modal.Header)`
+	height: 5%;
 	display: flex;
-	flex-direction: column-reverse;
 	align-items: flex-start;
 	border: none;
-	padding: 1rem 1rem 0 1rem;
+	padding: 0;
 `;
 
 export const __ModalBody = styled(Modal.Body)`
-	padding: 1rem 0 0 0;
+	height: 95%;
 	display: flex;
-	flex-direction: column;
-	height: 85vh;
-	max-height: 85vh;
-	overflow-y: scroll;
-`;
-export const __ModalFooter = styled(Modal.Footer)`
-	border: none;
-	padding: 0 3rem;
+	justify-content: center;
+	padding: 0;
+	overflow-y: auto;
 `;
 
 export const __PostContainer = styled(Container)`
 	width: 100%;
-	padding: 0 50px;
+	max-width: 400px;
 	margin: 0;
+	padding: 0;
 	color: #303131;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `;
 
 export const __PostFormContainer = styled(Container)`
 	width: 100%;
-	padding: 0 50px;
 	margin: 0;
 	color: #303131;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+export const __PostFormRow = styled(Row)`
+	height: 100%;
+	padding-top: 2rem;
+`;
+export const __PostFormImageCol = styled(Col)`
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2rem;
+`;
+export const __PostFormInfoCol = styled(Col)`
+	margin-bottom: 2rem;
+`;
+
+export const __PostFormControlsCol = styled(Col)`
+	align-self: end;
+	padding: 1rem 0;
+`;
+export const __HeaderInputContainer = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -133,48 +160,63 @@ export const __PostFormContainer = styled(Container)`
 export const __PostImageContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 `;
 
 export const __PostImage = styled(Image)`
-	width: 400px;
+	max-width: 100%;
 	aspect-ratio: 4/5;
+	border-radius: 0.5rem;
 `;
 
 export const __HeaderContainer = styled.div`
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 2rem;
-	height: 2rem;
+	height: 4rem;
+	border-bottom: 1px solid lightgrey;
 `;
 
 export const __TitleWrapper = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
 `;
 
 export const __PostTitle = styled.h1`
-	font-size: 1.4rem;
-	margin: 0;
-`;
-export const __PostPlant = styled.h2`
+	font-weight: 800;
 	font-size: 1.2rem;
 	margin: 0;
 `;
+export const __PostPlant = styled.h2`
+	font-weight: 600;
+	font-size: 1rem;
+	margin-top: 0.4rem;
+	color: grey;
+`;
 export const __PostDate = styled.h3`
+	font-weight: 900;
+	flex: 0 0 50%;
+	text-align: right;
 	font-size: 1rem;
 	margin: 0;
 `;
 
-export const __PostInfoContainer = styled.div``;
+export const __PostInfoContainer = styled.div`
+	width: 100%;
+`;
 
 export const __PostContent = styled.p`
 	font-size: 1rem;
+	line-height: 1.5;
+	text-align: left;
 `;
 
 export const __ImageCropperModal = styled(Modal)``;
-export const __ImageCropperModalBody = styled(Modal.Body)``;
+export const __ImageCropperModalBody = styled(Modal.Body)`
+	padding: 0;
+`;
 
 export const __ImageEditControlsContainer = styled.div`
 	margin-left: auto;
@@ -186,46 +228,41 @@ export const __ImageEditControlsContainer = styled.div`
 export const __CancelSelectButton = styled(MdCancel)`
 	flex: 0 0 1/3;
 	color: white;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	margin: 0 0.2rem;
 	cursor: pointer;
 `;
 export const __CropImageButton = styled(FaCrop)`
 	flex: 0 0 1/3;
 	color: white;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	margin: 0 0.2rem;
 	cursor: pointer;
 `;
 export const __SelectImageButton = styled(FaImage)`
 	flex: 0 0 1/3;
-
 	color: white;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	margin: 0 0.2rem;
 	cursor: pointer;
 `;
 
 export const __ImageOverlay = styled.div`
-	width: 200px;
-	height: 250px;
+	width: 100%;
+	aspect-ratio: 4/5;
 	background-color: black;
 	opacity: 0.6;
 	display: none;
 	position: absolute;
+	bottom: 0;
 	top: 0;
 	padding: 0.6rem 0.4rem 0.4rem 0.4rem;
 `;
 
 export const __ImagePreviewContainer = styled.div`
-	width: 200px;
-	height: 250px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	width: 100%;
+	aspect-ratio: 4/5;
 	position: relative;
-	margin-bottom: 2rem;
-
 	&:hover {
 		& > ${__ImageOverlay} {
 			display: block;
@@ -233,13 +270,12 @@ export const __ImagePreviewContainer = styled.div`
 	}
 `;
 export const __ImagePreview = styled(Image)`
-	width: 200px;
+	width: 100%;
 	aspect-ratio: 4/5;
 `;
 
 export const __InputFileButton = styled.button`
 	border: none;
-
 	border-radius: 12px;
 	color: ${CSS.WHITE};
 	background-color: ${CSS.GREEN_SECONDARY};
@@ -256,13 +292,15 @@ export const __FileInput = styled.input`
 `;
 
 export const __Form = styled.form`
-	width: 200px;
+	flex: 1 0 auto;
+	width: 100%;
 `;
+
 export const __InputContainer = styled.div`
+	width: 100%;
 	border-bottom: 1px solid black;
 	margin-bottom: 2rem;
 `;
-
 export const __InputLabel = styled.div`
 	font-size: 0.8rem;
 	margin-bottom: 0.8rem;
@@ -276,23 +314,31 @@ export const __Input = styled.input`
 	padding-bottom: 0.4rem;
 	&:focus {
 		border-radius: 0.2rem;
-		outline: 2px solid ${CSS.GREEN_SAGE};
+		outline: none;
 	}
 `;
-export const __TextAreaContainer = styled.div`
-	margin-bottom: 2rem;
-`;
-export const __TextArea = styled.textarea`
-	padding-left: 0.4rem;
-	padding-top: 0.2rem;
-	width: 100%;
 
+export const __TextAreaContainer = styled.div`
+	width: 100%;
+`;
+
+export const __TextArea = styled.textarea`
+	padding: 0.4rem;
+	width: 100%;
+	resize: none;
+	height: 6rem;
+	border: 2px solid ${CSS.GREEN_SAGE};
+	border-radius: 0.2rem;
 	&:focus {
+		border: 2px solid ${CSS.GREEN_SECONDARY};
+
 		border-radius: 0.2rem;
-		outline: 2px solid ${CSS.GREEN_SAGE};
+		outline: none;
 	}
 `;
 export const __PostButtonsContainer = styled.div`
+	max-width: 16rem;
+	margin: auto;
 	display: flex;
 	justify-content: space-between;
 `;

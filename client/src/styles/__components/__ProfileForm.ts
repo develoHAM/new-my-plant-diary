@@ -22,12 +22,12 @@ export const __InfoInput = styled.input`
 
 export const __ErrorMessageContainer = styled.div`
 	height: 1rem;
-	margin-bottom: 0.4rem;
+	margin-bottom: 1rem;
 `;
 
 export const __ErrorMessage = styled.span`
-	font-family: 'TAEBAEKmilkyway';
-	font-weight: 800;
+	/* font-family: 'TAEBAEKmilkyway'; */
+	font-weight: 300;
 	color: red;
 	font-size: 0.8rem;
 `;

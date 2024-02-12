@@ -49,9 +49,8 @@ export default function LoginForm() {
 		if (result) {
 			setLogin(true);
 			setUserInfo(data);
-			alert('로그인 성공');
 			reset();
-			navigate('/');
+			navigate('/calendar');
 		} else {
 			alert(message);
 		}

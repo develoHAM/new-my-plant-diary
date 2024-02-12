@@ -46,7 +46,6 @@ export default function PasswordForm({ formState, setFormState }: FormStateProps
 		const { result, message, data } = await patchUser(formData);
 		if (result) {
 			setUserInfo(data);
-			alert(message);
 			cancelChangingPassword();
 		} else {
 			alert(message);

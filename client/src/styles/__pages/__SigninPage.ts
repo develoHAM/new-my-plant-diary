@@ -11,6 +11,7 @@ export const __PageContainer = styled(Container)`
 	padding: 3rem 0 0 0;
 	width: 100%;
 	min-height: calc(100vh - 3rem);
+	overflow-y: auto;
 	background-color: white;
 	display: flex;
 	justify-content: center;

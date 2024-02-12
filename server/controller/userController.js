@@ -19,10 +19,9 @@ export const check_email = async (req, res) => {
 			},
 		});
 		if (hasUser) {
-			return res.status(200).json({ result: false, message: '이미 존재하는 아이디 입니다.' });
-		} else {
-			return res.status(200).json({ result: true, message: '사용 가능한 아이디 입니다.' });
+			return res.status(200).json({ result: false, message: '이미 등록된 이메일 입니다.' });
 		}
+		return res.status(200).json({ result: true, message: '등록 가능한 이메일 입니다.' });
 	} catch (error) {
 		console.log(error);
 		return res.sendStatus(500);
@@ -31,7 +30,6 @@ export const check_email = async (req, res) => {
 
 export const get_user = async (req, res) => {
 	try {
-		console.log(req.user.dataValues);
 		return res.status(200).json({ result: true, message: '사용자 불러오기 성공', data: req.user });
 	} catch (error) {
 		console.log(error);
@@ -49,19 +47,18 @@ export const post_new_user = async (req, res) => {
 		});
 		if (hasUser) {
 			return res.status(409).json({ result: false, message: '이미 계정이 존재합니다.', data: null });
-		} else {
-			const encryptedPassword = await bcrypt.hash(password, ROUNDS);
-			const newUser = await Models.Users.create({
-				email: email,
-				name: name,
-				password: encryptedPassword,
-			});
-			const payload = { id: newUser.id, email: newUser.email };
-			const JWT = jwt.sign(payload, SECRET);
-			const cookieOptions = { signed: true, maxAge: 3600000, httpOnly: true, overwrite: true };
-			// res.cookie(COOKIE, JWT, cookieOptions);
-			return res.status(201).json({ result: true, message: '회원 가입 성공 토큰 발급 완료', data: newUser });
 		}
+		const encryptedPassword = await bcrypt.hash(password, ROUNDS);
+		const newUser = await Models.Users.create({
+			email: email,
+			name: name,
+			password: encryptedPassword,
+		});
+		const payload = { id: newUser.id, email: newUser.email, exp: Math.floor(Date.now() / 1000) + 2 * 60 * 60 }; // 사용자 db ID, 이메일, 토큰 만료 시간(지금부터 2시간 이후)
+		const JWT = jwt.sign(payload, SECRET);
+		const cookieOptions = { signed: true, maxAge: 2 * 60 * 60 * 1000, httpOnly: true, overwrite: true }; // 2시간 뒤에 없어지는 쿠키
+		res.cookie(COOKIE, JWT, cookieOptions);
+		return res.status(201).json({ result: true, message: '회원가입 성공하여 토큰을 발급했습니다.', data: newUser });
 	} catch (error) {
 		console.log('error', error);
 		return res.sendStatus(500);
@@ -74,8 +71,7 @@ export const patch_user = async (req, res) => {
 		if (req.file) {
 			console.log(req.file);
 
-			const filePath =
-				env.NODE_ENV == 'development' ? `${SERVER_DOMAIN}/${req.file.path}` : req.file.transforms[0].location;
+			const filePath = env.NODE_ENV == 'development' ? `${SERVER_DOMAIN}/${req.file.path}` : req.file.location;
 
 			const [rowAffected] = await Models.Users.update(
 				{
@@ -85,7 +81,9 @@ export const patch_user = async (req, res) => {
 			);
 			if (rowAffected) {
 				const updatedUser = await Models.Users.findOne({ where: { id } });
-				return res.status(200).json({ result: true, message: '사용자 정보 수정 완료', data: updatedUser });
+				return res
+					.status(200)
+					.json({ result: true, message: '사용자 프로필 사진 수정 완료', data: updatedUser });
 			} else {
 				console.log('실패');
 				return res.sendStatus(500);

@@ -43,7 +43,6 @@ export default function NameForm({ formState, setFormState }: FormStateProps) {
 		const { result, message, data } = await patchUser(formData);
 		if (result) {
 			setUserInfo(data);
-			alert(message);
 			cancelChangingName();
 		} else {
 			alert(message);

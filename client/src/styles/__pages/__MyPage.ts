@@ -8,8 +8,6 @@ import Stack from 'react-bootstrap/Stack';
 import Modal from 'react-bootstrap/Modal';
 
 export const __PageContainer = styled(Container)`
-	margin: 0;
-	padding: 3rem 0 0 0;
 	width: 100%;
 	min-height: calc(100vh - 3rem);
 	background-color: white;
@@ -18,8 +16,9 @@ export const __PageContainer = styled(Container)`
 `;
 
 export const __InfoStack = styled(Stack)`
-	margin-top: 2rem;
-	padding: 0 30% 0 30%;
+	max-width: 40rem;
+	margin-top: 3rem;
+	padding: 5% 8% 0 8%;
 	display: flex;
 `;
 
@@ -111,6 +110,7 @@ export const __LogoutButton = styled.button`
 	border-radius: 12px;
 	width: 100%;
 	padding: 0.4rem;
+	height: 2rem;
 	background-color: ${CSS.GREEN_SECONDARY};
 	&:hover {
 		background-color: ${CSS.GREEN_PRIMARY};
@@ -125,6 +125,7 @@ export const __DeleteAccountButton = styled.button`
 	width: 100%;
 	padding: 0.4rem;
 	margin-bottom: 2rem;
+	height: 2rem;
 	background-color: ${CSS.GREEN_SECONDARY};
 	&:hover {
 		background-color: ${CSS.GREEN_PRIMARY};

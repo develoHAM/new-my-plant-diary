@@ -33,11 +33,9 @@ export const get_post = async (req, res) => {
 			},
 		});
 		if (post) {
-			return res
-				.status(200)
-				.json({ result: true, message: `postId: ${postId} 게시블 불러오기 성공`, data: post });
+			return res.status(200).json({ result: true, message: `${postId}번 게시글 불러오기 성공`, data: post });
 		} else {
-			return res.status(200).json({ result: true, message: '없어요', data: post });
+			return res.status(200).json({ result: true, message: '게시블이 존재하지 않습니다.', data: null });
 		}
 	} catch (error) {
 		console.log(error);
@@ -50,9 +48,8 @@ export const post_post = async (req, res) => {
 		console.log('post_post');
 		let postData = {};
 		if (req.file) {
-			console.log(req.file);
-			const filePath =
-				env.NODE_ENV == 'development' ? `${SERVER_DOMAIN}/${req.file.path}` : req.file.transforms[0].location;
+			console.log('req.file', req.file);
+			const filePath = env.NODE_ENV == 'development' ? `${SERVER_DOMAIN}/${req.file.path}` : req.file.location;
 			postData.img = filePath;
 		}
 		if (req.body.postData) {
@@ -82,9 +79,9 @@ export const patch_post = async (req, res) => {
 		const postId = Number(req.params.id);
 		const infoToUpdate = {};
 		if (req.file) {
-			const newImgSRC = req.file.transforms[0].location;
-			infoToUpdate.img = newImgSRC;
 			console.log('req.file', req.file);
+			const newImgSRC = req.file.location;
+			infoToUpdate.img = newImgSRC;
 		}
 		if (req.body.postData) {
 			const postData = JSON.parse(req.body.postData);

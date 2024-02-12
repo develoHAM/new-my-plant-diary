@@ -17,8 +17,9 @@ export const __PageContainer = styled(Container)`
 `;
 
 export const __PageRow = styled(Row)`
-	padding: 0;
-	margin: 0;
+	/* padding-top: 2rem; */
+	min-height: calc(100vh - 3rem);
+	overflow-y: auto;
 `;
 
 export const __CalendarCol = styled(Col)`
@@ -58,11 +59,11 @@ export const __PostsRow = styled(Row)`
 `;
 
 export const __Date = styled.div`
-	padding-right: 2rem;
 	width: 100%;
 	margin-bottom: 2rem;
 	text-align: right;
-	font-size: 1.2rem;
+	font-size: 1rem;
+	font-weight: 800;
 `;
 
 export const __NoPost = styled.div`
@@ -75,7 +76,7 @@ export const __NoPost = styled.div`
 
 export const __ModalButton = styled.button`
 	margin-top: 4rem;
-	color: ${CSS.WHITE};
+	color: white;
 	border: none;
 	border-radius: 12px;
 	padding: 0.6rem;
@@ -87,12 +88,16 @@ export const __ModalButton = styled.button`
 	}
 `;
 
-export const __Modal = styled(Modal)``;
+export const __Modal = styled(Modal)`
+	max-width: 100vw;
+`;
 
 export const __ModalHeader = styled(Modal.Header)`
+	height: 5%;
 	display: flex;
 	justify-content: center;
 	border: none;
+	padding: 0;
 `;
 export const __ModalCloseButton = styled(IoMdClose)`
 	color: grey;
@@ -105,11 +110,17 @@ export const __ModalCloseButton = styled(IoMdClose)`
 	}
 `;
 export const __ModalTitle = styled(Modal.Title)`
-	font-size: 1.8rem;
-	margin-top: 2rem;
+	font-size: 1rem;
+	background-color: ${CSS.GREEN_SAGE};
+	padding: 0.2rem 0.8rem;
+	border-radius: 12px;
 `;
-export const __ModalSubtitle = styled(Modal.Title)``;
+
 export const __ModalBody = styled(Modal.Body)`
-	max-height: 82vh;
+	height: 95%;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	overflow-y: auto;
 `;
 export const __ModalFooter = styled(Modal.Footer)``;

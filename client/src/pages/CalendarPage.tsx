@@ -20,7 +20,6 @@ import {
 	__Modal,
 	__ModalHeader,
 	__ModalTitle,
-	__ModalSubtitle,
 	__ModalBody,
 	__ModalFooter,
 	__ModalCloseButton,
@@ -68,9 +67,9 @@ export default function CalendarPage() {
 
 	return (
 		<__PageContainer fluid={'md'}>
-			<__PageRow fluid={'md'}>
+			<__PageRow>
 				<__CalendarCol xs={12} md={4}>
-					<__CalendarContainer>
+					<__CalendarContainer fluid={'md'}>
 						<Calendar
 							onChange={handleDateChange}
 							value={calendarDate}
@@ -91,7 +90,7 @@ export default function CalendarPage() {
 							작성하기
 						</__ModalButton>
 					</__CalendarContainer>
-					<__Modal show={modalShow} onHide={handleModalClose} size={'lg'}>
+					<__Modal show={modalShow} onHide={handleModalClose} size={'lg'} dialogClassName='custom-modal'>
 						<__ModalHeader>
 							<__ModalTitle>{calendarDate}</__ModalTitle>
 							<__ModalCloseButton onClick={handleModalClose} />

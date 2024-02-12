@@ -38,7 +38,7 @@ export const filteredUserPostsState = selectorFamily<post[], string>({
 		},
 });
 
-export const dateArrayFromUserPostsState = selector({
+export const dateArrayFromUserPostsState = selector<string[]>({
 	key: 'dateArrayFromUserPostsState',
 	get: ({ get }) => {
 		const arrayOfDates = get(userPostsState).map((post) => post.date);
