@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { postUserData, loginData } from '../data/constants/types/axios';
-const SERVERDOMAIN = process.env.REACT_APP_SERVER_DOMAIN || 'http://localhost:8000';
+const SERVERDOMAIN = process.env.REACT_APP_SERVER_DOMAIN || 'http://localhost:8000/api';
 
 export const requestLogin = async (loginData: loginData) => {
 	try {
@@ -31,6 +31,7 @@ export const requestLogout = async () => {
 
 export const getUser = async () => {
 	try {
+		console.log('SERVERDOMAIN', SERVERDOMAIN);
 		const response = await axios.get(`${SERVERDOMAIN}/user`, { withCredentials: true });
 		return response.data;
 	} catch (error: any) {
@@ -43,6 +44,7 @@ export const getUser = async () => {
 
 export const validateEmail = async (useremail: string) => {
 	try {
+		console.log('SERVERDOMAIN', SERVERDOMAIN);
 		const response = await axios.get(`${SERVERDOMAIN}/user/email/${useremail}`);
 		const { result, message } = response.data;
 		return response.data;
