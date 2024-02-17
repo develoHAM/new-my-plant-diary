@@ -23,7 +23,7 @@ export const __CardCol = styled(Col)`
 export const __CardImageOverlay = styled(Card.ImgOverlay)`
 	display: none;
 	background: rgba(0, 0, 0, 0.5);
-	color: white;
+	color: ${CSS.BACKGROUND_PRIMARY};
 `;
 export const __Card = styled(Card)`
 	width: 100%;
@@ -37,6 +37,19 @@ export const __Card = styled(Card)`
 		}
 	}
 `;
+
+export const __CardDate = styled.div`
+	text-align: center;
+	font-weight: 600;
+	color: ${CSS.ACCENT_PRIMARY};
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: center;
+	height: 100%;
+	opacity: 0.4;
+`;
+
 export const __CardImage = styled(Card.Img)`
 	width: 100%;
 	aspect-ratio: 4/5;
@@ -66,7 +79,6 @@ export const __DropdownToggle = styled(Dropdown.Toggle)`
 	padding: 0;
 	line-height: 0;
 	background-color: white;
-
 	&:hover {
 		background-color: white;
 	}
@@ -88,12 +100,12 @@ export const __DropdownMenu = styled(Dropdown.Menu)`
 export const __DropdownItem = styled(Dropdown.Item)`
 	font-size: 1rem;
 	&:active {
-		background-color: ${CSS.GREEN_SAGE};
+		background-color: ${CSS.ACCENT_PRIMARY};
 	}
 `;
 
 export const __DotsIcon = styled(HiDotsHorizontal)`
-	color: black;
+	color: ${CSS.BLACK};
 	font-size: 2rem;
 `;
 
@@ -118,7 +130,7 @@ export const __PostContainer = styled(Container)`
 	max-width: 400px;
 	margin: 0;
 	padding: 0;
-	color: #303131;
+	color: ${CSS.BLACK};
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -126,9 +138,10 @@ export const __PostContainer = styled(Container)`
 
 export const __PostFormContainer = styled(Container)`
 	width: 100%;
+	height: 100%;
 	margin: 0;
-	color: #303131;
 	display: flex;
+	color: ${CSS.BLACK};
 	flex-direction: column;
 	align-items: center;
 `;
@@ -141,14 +154,18 @@ export const __PostFormImageCol = styled(Col)`
 	display: flex;
 	justify-content: center;
 	margin-bottom: 2rem;
+	height: fit-content;
 `;
 export const __PostFormInfoCol = styled(Col)`
+	height: fit-content;
 	margin-bottom: 2rem;
 `;
 
 export const __PostFormControlsCol = styled(Col)`
-	align-self: end;
 	padding: 1rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 export const __HeaderInputContainer = styled.div`
 	width: 100%;
@@ -167,6 +184,19 @@ export const __PostImage = styled(Image)`
 	max-width: 100%;
 	aspect-ratio: 4/5;
 	border-radius: 0.5rem;
+`;
+
+export const __NoImage = styled.div`
+	width: 100%;
+	color: ${CSS.ACCENT_SECONDARY};
+	aspect-ratio: 4/5;
+	font-size: 1.2rem;
+	font-weight: 600;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const __HeaderContainer = styled.div`
@@ -226,22 +256,26 @@ export const __ImageEditControlsContainer = styled.div`
 `;
 
 export const __CancelSelectButton = styled(MdCancel)`
-	flex: 0 0 1/3;
-	color: white;
+	color: ${CSS.BACKGROUND_PRIMARY};
 	font-size: 1.2rem;
 	margin: 0 0.2rem;
 	cursor: pointer;
 `;
 export const __CropImageButton = styled(FaCrop)`
-	flex: 0 0 1/3;
-	color: white;
+	color: ${CSS.BACKGROUND_PRIMARY};
 	font-size: 1.2rem;
 	margin: 0 0.2rem;
 	cursor: pointer;
 `;
 export const __SelectImageButton = styled(FaImage)`
-	flex: 0 0 1/3;
-	color: white;
+	color: ${CSS.BACKGROUND_PRIMARY};
+	font-size: 1.2rem;
+	margin: 0 0.2rem;
+	cursor: pointer;
+`;
+
+export const __DeleteOriginalImageButton = styled(MdCancel)`
+	color: ${CSS.BACKGROUND_PRIMARY};
 	font-size: 1.2rem;
 	margin: 0 0.2rem;
 	cursor: pointer;
@@ -250,7 +284,7 @@ export const __SelectImageButton = styled(FaImage)`
 export const __ImageOverlay = styled.div`
 	width: 100%;
 	aspect-ratio: 4/5;
-	background-color: black;
+	background-color: ${CSS.BLACK};
 	opacity: 0.6;
 	display: none;
 	position: absolute;
@@ -261,7 +295,6 @@ export const __ImageOverlay = styled.div`
 
 export const __ImagePreviewContainer = styled.div`
 	width: 100%;
-	aspect-ratio: 4/5;
 	position: relative;
 	&:hover {
 		& > ${__ImageOverlay} {
@@ -277,14 +310,14 @@ export const __ImagePreview = styled(Image)`
 export const __InputFileButton = styled.button`
 	border: none;
 	border-radius: 12px;
-	color: ${CSS.WHITE};
-	background-color: ${CSS.GREEN_SECONDARY};
+	color: ${CSS.BACKGROUND_PRIMARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	width: 200px;
 	height: 2rem;
 	font-size: 1rem;
 
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 export const __FileInput = styled.input`
@@ -292,8 +325,9 @@ export const __FileInput = styled.input`
 `;
 
 export const __Form = styled.form`
-	flex: 1 0 auto;
+	flex: 0 0 auto;
 	width: 100%;
+	height: 100%;
 `;
 
 export const __InputContainer = styled.div`
@@ -301,9 +335,14 @@ export const __InputContainer = styled.div`
 	border-bottom: 1px solid black;
 	margin-bottom: 2rem;
 `;
-export const __InputLabel = styled.div`
+export const __InputLabel = styled.div<{ $error?: Boolean }>`
 	font-size: 0.8rem;
 	margin-bottom: 0.8rem;
+	color: ${(props) => (props.$error ? 'red' : `${CSS.BLACK}`)};
+
+	&::after {
+		content: ${(props) => (props.$error ? "'*'" : 'none')};
+	}
 `;
 export const __Input = styled.input`
 	padding-left: 0.4rem;
@@ -311,6 +350,7 @@ export const __Input = styled.input`
 	font-size: 1rem;
 	width: 100%;
 	border: none;
+	border-radius: 0;
 	padding-bottom: 0.4rem;
 	&:focus {
 		border-radius: 0.2rem;
@@ -327,18 +367,18 @@ export const __TextArea = styled.textarea`
 	width: 100%;
 	resize: none;
 	height: 6rem;
-	border: 2px solid ${CSS.GREEN_SAGE};
+	border: 1px solid ${CSS.ACCENT_SECONDARY};
 	border-radius: 0.2rem;
 	&:focus {
-		border: 2px solid ${CSS.GREEN_SECONDARY};
+		border: 1px solid ${CSS.ACCENT_PRIMARY};
 
 		border-radius: 0.2rem;
 		outline: none;
 	}
 `;
 export const __PostButtonsContainer = styled.div`
+	width: 100%;
 	max-width: 16rem;
-	margin: auto;
 	display: flex;
 	justify-content: space-between;
 `;
@@ -346,9 +386,9 @@ export const __SubmitButton = styled.button`
 	border: none;
 	border-radius: 12px;
 	padding: 0.6rem;
-	color: ${CSS.WHITE};
+	color: ${CSS.BACKGROUND_PRIMARY};
 	font-size: 1rem;
-	background-color: ${CSS.GREEN_SECONDARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 
 	&:disabled {
 		background-color: lightgrey;
@@ -356,31 +396,35 @@ export const __SubmitButton = styled.button`
 			background-color: lightgrey;
 		}
 	}
+
+	&:hover {
+		background-color: ${CSS.ACCENT_SECONDARY};
+	}
 `;
 export const __CancelButton = styled.button`
 	border: none;
 	border-radius: 12px;
 	padding: 0.6rem;
-	color: ${CSS.WHITE};
+	color: ${CSS.BACKGROUND_PRIMARY};
 	font-size: 1rem;
-	background-color: ${CSS.GREEN_SECONDARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 export const __DeleteButton = styled.button`
 	border: none;
 	border-radius: 12px;
 	padding: 0.6rem;
-	color: ${CSS.WHITE};
+	color: ${CSS.BACKGROUND_PRIMARY};
 	font-size: 1rem;
-	background-color: ${CSS.GREEN_SECONDARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 
 export const __Spinner = styled(Spinner)`
-	color: ${CSS.GREEN_SAGE};
+	color: ${CSS.ACCENT_SECONDARY};
 	margin: auto;
 `;

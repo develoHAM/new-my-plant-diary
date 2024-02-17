@@ -68,7 +68,7 @@ export default function CalendarPage() {
 	return (
 		<__PageContainer fluid={'md'}>
 			<__PageRow>
-				<__CalendarCol xs={12} md={4}>
+				<__CalendarCol xs={12} md={5}>
 					<__CalendarContainer fluid={'md'}>
 						<Calendar
 							onChange={handleDateChange}

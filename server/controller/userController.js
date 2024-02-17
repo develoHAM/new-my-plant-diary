@@ -96,10 +96,13 @@ export const patch_user = async (req, res) => {
 				if (key === 'password') {
 					const encryptedPassword = await bcrypt.hash(userInfo[key], ROUNDS);
 					infoToUpdate[key] = encryptedPassword;
-				} else {
-					infoToUpdate[key] = userInfo[key];
 				}
+				infoToUpdate[key] = userInfo[key];
 			}
+			if (infoToUpdate['profile_pic'] == null) {
+				infoToUpdate['profile_pic'] = '/profile.jpg';
+			}
+
 			const [rowAffected] = await Models.Users.update(infoToUpdate, {
 				where: {
 					id,

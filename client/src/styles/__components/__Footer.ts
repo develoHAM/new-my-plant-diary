@@ -18,7 +18,7 @@ export const __Container = styled(Container)`
 	height: 3rem;
 	margin: 0;
 	padding: 0;
-	background-color: ${CSS.GREEN_SAGE};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	display: flex;
 	justify-content: center;
 `;
@@ -32,23 +32,23 @@ export const __InfoContainer = styled.div`
 
 export const __EmailIcon = styled(MdEmail)`
 	font-size: 1.8rem;
-	color: ${CSS.GREEN_PRIMARY};
+	color: ${CSS.ACCENT_SECONDARY};
 `;
 export const __GitHubIcon = styled(FaGithub)`
 	font-size: 1.8rem;
-	color: ${CSS.GREEN_PRIMARY};
+	color: ${CSS.ACCENT_SECONDARY};
 `;
 export const __NotionIcon = styled(RiNotionFill)`
 	font-size: 1.8rem;
-	color: ${CSS.GREEN_PRIMARY};
+	color: ${CSS.ACCENT_SECONDARY};
 `;
 export const __StudyBlogIcon = styled(GiClassicalKnowledge)`
 	font-size: 1.8rem;
-	color: ${CSS.GREEN_PRIMARY};
+	color: ${CSS.ACCENT_SECONDARY};
 `;
 
 export const __DesignEvoLink = styled.a`
 	margin-left: 0.2rem;
 	text-decoration: none;
-	color: ${CSS.GREEN_PRIMARY};
+	color: ${CSS.ACCENT_SECONDARY};
 `;

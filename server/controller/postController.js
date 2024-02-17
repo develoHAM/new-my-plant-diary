@@ -78,16 +78,16 @@ export const patch_post = async (req, res) => {
 		}
 		const postId = Number(req.params.id);
 		const infoToUpdate = {};
-		if (req.file) {
-			console.log('req.file', req.file);
-			const newImgSRC = req.file.location;
-			infoToUpdate.img = newImgSRC;
-		}
 		if (req.body.postData) {
 			const postData = JSON.parse(req.body.postData);
 			for (const key in postData) {
 				infoToUpdate[key] = postData[key];
 			}
+		}
+		if (req.file) {
+			console.log('req.file', req.file);
+			const newImgSRC = req.file.location;
+			infoToUpdate.img = newImgSRC;
 		}
 		const [rowAffected] = await Models.Posts.update(infoToUpdate, {
 			where: {

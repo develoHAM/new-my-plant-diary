@@ -28,13 +28,14 @@ import {
 	__DeleteAccountButton,
 	__ImageCropperModal,
 	__ImageCropperModalBody,
+	__ImageControlsContainer,
+	__DeleteImageButton,
 } from '../styles/__pages/__MyPage';
 import { CropperState } from '../data/constants/types/image';
 
 export default function MyPage() {
 	const isLoggedIn = useAuth();
 	const navigate = useNavigate();
-	const [login, setLogin] = useRecoilState(loginState);
 	const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
 	const resetLoginState = useResetRecoilState(loginState);
@@ -98,6 +99,18 @@ export default function MyPage() {
 		}
 	};
 
+	const deleteImage = async () => {
+		const formData = new FormData();
+		formData.append('userInfo', JSON.stringify({ profile_pic: null }));
+		const { result, message, data } = await patchUser(formData);
+		if (result) {
+			console.log(message);
+			setUserInfo(data);
+		} else {
+			alert(message);
+		}
+	};
+
 	const changeName = () => {
 		setFormState({ ...formState, changingName: true });
 	};
@@ -133,16 +146,23 @@ export default function MyPage() {
 					</__TitleContainer>
 					<__ProfileImageContainer direction='horizontal'>
 						<__ProfileImage src={userInfo.profile_pic} roundedCircle />
-						<__FileInputLabel>
-							변경하기{' '}
-							<__FileInput
-								type={'file'}
-								accept={'image/*'}
-								onChange={onFileChange}
-								onClick={resetFile}
-								ref={inputFileRef}
-							/>
-						</__FileInputLabel>
+						<__ImageControlsContainer>
+							<__FileInputLabel>
+								변경하기
+								<__FileInput
+									type={'file'}
+									accept={'image/*'}
+									onChange={onFileChange}
+									onClick={resetFile}
+									ref={inputFileRef}
+								/>
+							</__FileInputLabel>
+							<__DeleteImageButton
+								onClick={deleteImage}
+								disabled={userInfo.profile_pic === '/profile.jpg'}>
+								삭제하기
+							</__DeleteImageButton>
+						</__ImageControlsContainer>
 					</__ProfileImageContainer>
 					<__InfoContainer>
 						<__InfoLabel>이메일 주소</__InfoLabel>

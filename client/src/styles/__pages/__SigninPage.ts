@@ -12,7 +12,7 @@ export const __PageContainer = styled(Container)`
 	width: 100%;
 	min-height: calc(100vh - 3rem);
 	overflow-y: auto;
-	background-color: white;
+	background-color: ${CSS.BACKGROUND_PRIMARY};
 	display: flex;
 	justify-content: center;
 `;
@@ -22,36 +22,34 @@ export const __FormRow = styled(Row)`
 	width: 100%;
 `;
 export const __FormCol = styled(Col)`
-	margin: 8% 0 8% 0;
+	margin: 10% 0;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	/* align-items: center; */
 `;
 
 export const __ImageCol = styled(Col)`
-	margin: 8% 0 8% 0;
+	margin: 10% 0;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
 `;
 
 export const __Image = styled(Image)`
 	width: 100%;
 	object-fit: contain;
-	margin-bottom: auto;
 `;
 
-export const __ToggleButton = styled.button`
-	margin-top: 1rem;
-	border: none;
-	border-radius: 12px;
-	color: ${CSS.WHITE};
-	background-color: ${CSS.GREEN_SECONDARY};
-	width: 60%;
-	height: 3rem;
-	font-size: 1.2rem;
+export const __ToggleButton = styled.div`
+	margin: 1rem auto;
+	color: ${CSS.ACCENT_SECONDARY};
+	font-size: 1rem;
+	font-weight: 400;
+	width: fit-content;
+	cursor: pointer;
 
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		text-decoration: underline;
+		text-underline-offset: 2px;
 	}
 `;

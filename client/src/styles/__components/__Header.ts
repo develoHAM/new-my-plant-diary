@@ -7,7 +7,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import * as CSS from '../constants';
 
 export const __Navbar = styled(Navbar)`
-	background-color: ${CSS.GREEN_SAGE};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	min-height: 3rem;
 	max-height: 3rem;
 	height: 3rem;
@@ -24,7 +24,7 @@ export const __NavbarBrand = styled(Navbar.Brand)`
 	text-decoration: none;
 	font-size: 1.2rem;
 	font-weight: 900;
-	color: ${CSS.LOGO};
+	color: ${CSS.ACCENT_SECONDARY};
 `;
 
 export const __Nav = styled(Nav)`
@@ -39,10 +39,10 @@ export const __Nav = styled(Nav)`
 export const __NavLink = styled(Nav.Link)`
 	margin: 0 0.4rem;
 	font-size: 1rem;
-	color: ${CSS.WHITE};
+	color: ${CSS.BACKGROUND_PRIMARY};
 	text-decoration: none;
 	&.active {
-		color: ${CSS.GREEN_PRIMARY};
+		color: ${CSS.BLACK};
 		text-decoration: underline;
 	}
 `;

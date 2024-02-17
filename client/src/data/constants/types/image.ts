@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from 'react';
-import { EnumType } from 'typescript';
 
 type Zoom = {
 	x: number;

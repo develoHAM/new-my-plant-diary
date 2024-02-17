@@ -11,18 +11,18 @@ import Stack from 'react-bootstrap/Stack';
 
 export const __PageContainer = styled(Container)`
 	padding: 3rem 0 0 0;
-	background-color: white;
+	background-color: ${CSS.BACKGROUND_PRIMARY};
 	min-height: calc(100vh - 3rem);
 `;
 
 export const __PageRow = styled(Row)`
-	padding: 10% 2% 0 2%;
+	padding: 18% 0 0 0;
 	margin: 0;
 	justify-content: space-evenly;
 `;
 
 export const __TextCol = styled(Col)`
-	padding: 4%;
+	padding: 4% 0 0 0;
 	display: flex;
 	justify-content: center;
 `;
@@ -32,18 +32,18 @@ export const __TextStack = styled(Stack)``;
 export const __Title = styled.h1`
 	font-size: 3rem;
 	margin-bottom: 2rem;
-	color: ${CSS.GREEN_PRIMARY};
+	color: ${CSS.ACCENT_PRIMARY};
 	word-break: keep-all;
 `;
 
 export const __Description = styled.p`
 	font-size: 2rem;
-	color: ${CSS.GREEN_SECONDARY};
+	color: ${CSS.ACCENT_SECONDARY};
 	word-break: keep-all;
 `;
 
 export const __ImageCol = styled(Col)`
-	padding: 4%;
+	padding: 4% 0 0 0;
 
 	display: flex;
 	justify-content: center;

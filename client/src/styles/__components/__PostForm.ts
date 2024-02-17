@@ -45,7 +45,7 @@ export const __AddImagePlaceHolderIcon = styled(AiFillPicture)`
 	color: grey;
 	font-size: 8rem;
 	&:hover {
-		color: black;
+		color: ${CSS.BLACK};
 	}
 `;
 export const __FileInput = styled.input`
@@ -55,7 +55,7 @@ export const __FileInput = styled.input`
 export const __ControlsContainer = styled.div`
 	display: none;
 	position: absolute;
-	background-color: black;
+	background-color: ${CSS.BLACK};
 	width: 100%;
 	aspect-ratio: 4/5;
 	opacity: 0.6;
@@ -65,7 +65,7 @@ export const __ControlsContainer = styled.div`
 
 export const __ImageWrapper = styled.div`
 	width: 100%;
-	background-color: black;
+	background-color: ${CSS.BLACK};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -73,7 +73,7 @@ export const __ImageWrapper = styled.div`
 	transition: background-color 0.3s;
 
 	&:hover {
-		background-color: #00000080;
+		background-color: ${CSS.BLACK};
 
 		& > ${__ControlsContainer} {
 			display: flex;
@@ -90,13 +90,13 @@ export const __Image = styled.img`
 export const __CropButton = styled(FaCrop)`
 	font-size: 1rem;
 	cursor: pointer;
-	color: white;
+	color: ${CSS.BACKGROUND_PRIMARY};
 	margin: 0.2rem;
 `;
 export const __RemoveButton = styled(MdCancel)`
 	font-size: 1rem;
 	cursor: pointer;
-	color: white;
+	color: ${CSS.BACKGROUND_PRIMARY};
 	margin: 0.2rem;
 `;
 
@@ -109,8 +109,8 @@ export const __FormControlsCol = styled(Col)`
 export const __SubmitButton = styled.button`
 	border: none;
 	border-radius: 12px;
-	color: ${CSS.WHITE};
-	background-color: ${CSS.GREEN_SECONDARY};
+	color: ${CSS.BACKGROUND_PRIMARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	max-width: 200px;
 	width: 100%;
 	height: 2rem;
@@ -124,7 +124,7 @@ export const __SubmitButton = styled.button`
 	}
 
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 
@@ -140,7 +140,7 @@ export const __FormInputWrapper = styled.div`
 export const __FormLabel = styled.div<{ $error?: Boolean }>`
 	margin-bottom: 1rem;
 	font-size: 0.8rem;
-	color: ${(props) => (props.$error ? 'red' : 'black')};
+	color: ${(props) => (props.$error ? 'red' : `${CSS.BLACK}`)};
 
 	&::after {
 		content: ${(props) => (props.$error ? '"*"' : 'none')};
@@ -163,10 +163,10 @@ export const __FormTextArea = styled.textarea`
 	width: 100%;
 	resize: none;
 	height: 6rem;
-	border: 2px solid ${CSS.GREEN_SAGE};
+	border: 2px solid ${CSS.ACCENT_SECONDARY};
 	border-radius: 0.2rem;
 	&:focus {
-		border: 2px solid ${CSS.GREEN_SECONDARY};
+		border: 2px solid ${CSS.ACCENT_PRIMARY};
 
 		border-radius: 0.2rem;
 		outline: none;

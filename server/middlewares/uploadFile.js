@@ -1,7 +1,6 @@
 import multer from 'multer';
 import multerS3 from 'multer-s3-transform';
 import AWS from 'aws-sdk';
-// import sharp from 'sharp';
 
 const env = process.env;
 
@@ -27,6 +26,13 @@ const S3Storage = multerS3({
 	acl: 'public-read',
 	contentType: multerS3.AUTO_CONTENT_TYPE,
 	shouldTransform: false,
+	key: function (req, file, cb) {
+		const paths = req.baseUrl.substring(1).split('/');
+		const location = paths.shift();
+		const extension = file.originalname.split('.').pop();
+		const filePath = `uploads/${req.user.id}/${location}/${Date.now()}.${extension}`;
+		cb(null, filePath);
+	},
 	// transforms: [
 	// 	{
 	// 		id: 'resized',

@@ -10,10 +10,10 @@ export const __FormContainer = styled.div`
 
 export const __Title = styled.h1`
 	font-size: 2rem;
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 `;
 export const __Form = styled.form`
-	width: 60%;
+	width: 80%;
 `;
 
 export const __Label = styled.div`
@@ -23,7 +23,7 @@ export const __Label = styled.div`
 `;
 
 export const __InputContainer = styled.div`
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 `;
 
 export const __InputWrapper = styled.div<{ $highlight?: boolean }>`
@@ -34,7 +34,7 @@ export const __InputWrapper = styled.div<{ $highlight?: boolean }>`
 
 export const __Input = styled.input`
 	width: 100%;
-	background-color: white;
+	background-color: ${CSS.BACKGROUND_PRIMARY};
 	border: none;
 	outline: none;
 `;
@@ -42,18 +42,16 @@ export const __ValidationContainer = styled.div`
 	height: 0.8rem;
 `;
 export const __Validation = styled.span<{ $error?: boolean }>`
-	font-family: 'TAEBAEKmilkyway';
 	color: ${(props) => (props.$error ? 'red' : 'green')};
 	font-size: 0.8rem;
 `;
 export const __RegisterButton = styled.button`
-	margin-top: 2rem;
 	border: none;
 	border-radius: 12px;
-	color: ${CSS.WHITE};
-	background-color: ${CSS.GREEN_SECONDARY};
+	color: ${CSS.BACKGROUND_PRIMARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	width: 100%;
-	height: 3rem;
+	height: 2rem;
 	font-size: 1.2rem;
 
 	&:disabled {
@@ -64,6 +62,6 @@ export const __RegisterButton = styled.button`
 	}
 
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;

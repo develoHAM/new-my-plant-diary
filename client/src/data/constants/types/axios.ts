@@ -8,8 +8,3 @@ export interface postUserData {
 	name: string;
 	password: string;
 }
-
-export interface imgInfo {
-	width: number;
-	height: number;
-}

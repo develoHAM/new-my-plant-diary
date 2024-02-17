@@ -4,5 +4,5 @@ import * as CSS from '../constants';
 
 export const __PageWrapper = styled(Container)`
 	width: 100vw;
-	background-color: white;
+	background-color: ${CSS.BACKGROUND_PRIMARY};
 `;

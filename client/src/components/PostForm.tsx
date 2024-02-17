@@ -108,7 +108,7 @@ export default function PostForm({ selectedDate, handleModalClose }: PostFormPro
 		};
 		formData.append('postData', JSON.stringify(postData));
 
-		const { result, message, data } = await postPost(formData, { width: 400, height: 500 });
+		const { result, message, data } = await postPost(formData);
 
 		if (!result) {
 			alert(message);

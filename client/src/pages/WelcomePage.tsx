@@ -15,12 +15,14 @@ import { useAuth } from '../utils/hooks/useAuth';
 export default function WelcomePage() {
 	return (
 		<>
-			<__PageContainer id='MainPage __PageContainer' fluid={'md'}>
-				<__PageRow xs={1} md={2} fluid={'md'}>
+			<__PageContainer id='MainPage __PageContainer' fluid>
+				<__PageRow xs={1} md={2}>
 					<__TextCol>
 						<__TextStack>
 							<__Title>My Plant Diary</__Title>
-							<__Description> 로그인후 반려 식물들의 성장을 매일 기록해 보세요.</__Description>
+							<__Description>
+								회원가입 후 소중한 반려 식물들의 성장을 매일 매일 기록해 보세요.
+							</__Description>
 						</__TextStack>
 					</__TextCol>
 					<__ImageCol>

@@ -11,30 +11,31 @@ import Modal from 'react-bootstrap/Modal';
 export const __PageContainer = styled(Container)`
 	padding: 3rem 0 0 0;
 	width: 100%;
-	background-color: white;
+	background-color: ${CSS.BACKGROUND_PRIMARY};
 	position: relative;
 	margin: 0;
 `;
 
 export const __PageRow = styled(Row)`
-	/* padding-top: 2rem; */
 	min-height: calc(100vh - 3rem);
 	overflow-y: auto;
+	justify-content: space-between;
 `;
 
 export const __CalendarCol = styled(Col)`
 	display: flex;
 	align-items: center;
 	padding: 0;
-	margin: 0;
 `;
 
 export const __CalendarContainer = styled(Container)`
 	width: 100%;
 	display: flex;
+	height: 80%;
 	flex-direction: column;
 	align-items: center;
-	padding: 0;
+	justify-content: center;
+	padding: 2rem 0;
 `;
 
 export const __PostsCol = styled(Col)`
@@ -45,11 +46,9 @@ export const __PostsCol = styled(Col)`
 `;
 
 export const __PostsContainer = styled(Container)`
-	height: 630px;
+	height: 80vh;
 	max-height: calc(100vh - 3rem);
 	overflow: auto;
-	padding-top: 2rem;
-	margin: auto;
 `;
 
 export const __PostsRow = styled(Row)`
@@ -62,12 +61,13 @@ export const __Date = styled.div`
 	width: 100%;
 	margin-bottom: 2rem;
 	text-align: right;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font-weight: 800;
 `;
 
 export const __NoPost = styled.div`
 	font-size: 1.2rem;
+	font-weight: 500;
 	text-align: center;
 	width: 100%;
 `;
@@ -82,9 +82,9 @@ export const __ModalButton = styled.button`
 	padding: 0.6rem;
 	width: 10rem;
 	font-size: 1.2rem;
-	background-color: ${CSS.GREEN_SECONDARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	&:hover {
-		background-color: ${CSS.GREEN_PRIMARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 
@@ -111,7 +111,7 @@ export const __ModalCloseButton = styled(IoMdClose)`
 `;
 export const __ModalTitle = styled(Modal.Title)`
 	font-size: 1rem;
-	background-color: ${CSS.GREEN_SAGE};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	padding: 0.2rem 0.8rem;
 	border-radius: 12px;
 `;

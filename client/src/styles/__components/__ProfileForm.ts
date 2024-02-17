@@ -14,7 +14,7 @@ export const __InfoInput = styled.input`
 	width: 100%;
 	height: 2rem;
 	border: none;
-	background-color: white;
+	background-color: ${CSS.BACKGROUND_PRIMARY};
 	outline: none;
 	padding-bottom: 0.6rem;
 	border-bottom: 2px solid black;
@@ -42,10 +42,12 @@ export const __CancelButton = styled.button`
 	border-radius: 12px;
 	font-size: 0.8rem;
 	padding: 0.8rem;
-	background-color: ${CSS.GREEN_SAGE};
+	color: ${CSS.BACKGROUND_PRIMARY};
+
+	background-color: ${CSS.ACCENT_PRIMARY};
 	margin-right: 1rem;
 	&:hover {
-		background-color: ${CSS.GREEN_SECONDARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 
@@ -54,10 +56,11 @@ export const __ConfirmButton = styled.button`
 	border-radius: 12px;
 	font-size: 0.8rem;
 	padding: 0.8rem;
-	background-color: ${CSS.GREEN_SAGE};
+	color: ${CSS.BACKGROUND_PRIMARY};
+	background-color: ${CSS.ACCENT_PRIMARY};
 	margin-left: 1rem;
 	&:hover {
-		background-color: ${CSS.GREEN_SECONDARY};
+		background-color: ${CSS.ACCENT_SECONDARY};
 	}
 `;
 
