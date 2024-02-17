@@ -34,6 +34,7 @@ app.use('/auth', authRouter);
 app.use('/post', authenticateUser, postRouter);
 
 app.use('*', (req, res) => {
+	console.log('req.baseUrl', req.baseUrl);
 	res.json({ result: false, message: '올바른 접근이 아닙니다' });
 });
 
