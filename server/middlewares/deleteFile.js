@@ -13,7 +13,7 @@ export const deleteFile = async (req, res, next) => {
 		console.log('req.body====????', req.body);
 		const paths = req.baseUrl.substring(1).split('/');
 		console.log(paths);
-		const location = paths.shift();
+		const location = paths[1];
 		console.log('location', location);
 
 		if (location == 'post') {
