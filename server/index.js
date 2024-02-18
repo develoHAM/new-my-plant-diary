@@ -29,9 +29,9 @@ app.use(express.json());
 app.use(cookieParser(SECRET));
 app.use('/public', express.static('public'));
 
-app.use('/user', userRouter);
-app.use('/auth', authRouter);
-app.use('/post', authenticateUser, postRouter);
+app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/post', authenticateUser, postRouter);
 
 app.use('*', (req, res) => {
 	console.log('req.baseUrl', req.baseUrl);
