@@ -29,6 +29,7 @@ const S3Storage = multerS3({
 	key: function (req, file, cb) {
 		const paths = req.baseUrl.substring(1).split('/');
 		const location = paths.shift();
+		console.log('location', location);
 		const extension = file.originalname.split('.').pop();
 		const filePath = `uploads/${req.user.id}/${location}/${Date.now()}.${extension}`;
 		cb(null, filePath);

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import * as CSS from '../constants';
-import backgroundIMG from '../../data/images/4.jpg';
 
 // react-boostrap
 import Container from 'react-bootstrap/Container';
@@ -12,17 +11,17 @@ import Stack from 'react-bootstrap/Stack';
 export const __PageContainer = styled(Container)`
 	padding: 3rem 0 0 0;
 	background-color: ${CSS.BACKGROUND_PRIMARY};
-	min-height: calc(100vh - 3rem);
+	height: calc(100vh - 3rem);
 `;
 
 export const __PageRow = styled(Row)`
-	padding: 18% 0 0 0;
+	padding: 8rem 0;
+	height: 100%;
 	margin: 0;
-	justify-content: space-evenly;
+	justify-content: center;
 `;
 
 export const __TextCol = styled(Col)`
-	padding: 4% 0 0 0;
 	display: flex;
 	justify-content: center;
 `;
@@ -43,11 +42,11 @@ export const __Description = styled.p`
 `;
 
 export const __ImageCol = styled(Col)`
-	padding: 4% 0 0 0;
-
 	display: flex;
 	justify-content: center;
 `;
 export const __Image = styled(Image)`
 	margin-left: auto;
+	width: 100%;
+	height: fit-content;
 `;
