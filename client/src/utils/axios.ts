@@ -35,6 +35,7 @@ export const getUser = async () => {
 		const response = await axios.get(`${SERVERDOMAIN}/user`, { withCredentials: true });
 		return response.data;
 	} catch (error: any) {
+		console.log('error', error);
 		if (error.response && error.response.status >= 500) {
 			return { result: false, message: '서버 오류', data: null };
 		}

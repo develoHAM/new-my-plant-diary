@@ -30,7 +30,6 @@ export const authenticateUser = async (req, res, next) => {
 			res.cookie(COOKIE, null, cookieOptions);
 			return res.status(401).json({ result: false, message: '올바르지 않은 토큰입니다', data: null });
 		}
-		// console.log('authenticated user', user);
 		req.user = user;
 		return next();
 	} catch (error) {

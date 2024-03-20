@@ -48,5 +48,4 @@ export const __ImageCol = styled(Col)`
 export const __Image = styled(Image)`
 	margin-left: auto;
 	width: 100%;
-	height: fit-content;
 `;

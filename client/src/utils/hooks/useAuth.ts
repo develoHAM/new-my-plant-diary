@@ -15,10 +15,11 @@ export const useAuth = () => {
 
 	useEffect(() => {
 		const getUserInfo = async () => {
-			const { result, message, data } = await getUser();
-			if (result) {
+			const res = await getUser();
+			console.log(res);
+			if (res.result) {
 				setIsLoggedIn(true);
-				setUserInfo(data);
+				setUserInfo(res.data);
 			} else {
 				resetLoginState();
 				resetUserInfoState();
