@@ -8,6 +8,8 @@ import authRouter from './routes/authRouter.js';
 import db from './models/index.js';
 import { authenticateUser } from './middlewares/authenticateUser.js';
 
+import { swaggerUi, specs } from './config/swagger.js';
+
 dotenv.config();
 
 const env = process.env;
@@ -29,9 +31,69 @@ app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser(SECRET));
 app.use('/public', express.static('public'));
 
-app.use('/api/user', userRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+// Define global Swagger components and tags
+/**
+ * @swagger
+ * tags:
+ *   - name: auth
+ *     description: 로그인 / 로그아웃
+ *   - name: user
+ *     description: 사용자 CRUD
+ *   - name: posts
+ *     description: 게시글 CRUD
+ */
+/**
+ * @swagger
+ * components:
+ *   securitySchemas:
+ *	   cookieAuth:
+ *	     type: apiKey
+ *       in: cookie
+ * 		 name: LOGIN
+ *   schemas:
+ *     user:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         name:
+ *           type: string
+ *         password:
+ *           type: string
+ *         profile_pic:
+ *           type: string
+ *         email:
+ *           type: string
+ *         createdAt:
+ *           type: date
+ *         updatedAt:
+ *           type: date
+ *     post:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         title:
+ *           type: string
+ *         plant:
+ *           type: string
+ *         content:
+ *           type: string
+ *         img:
+ *           type: string
+ *         date:
+ *           type: string
+ *         createdAt:
+ *           type: date
+ *         updatedAt:
+ *           type: date
+ */
+
 app.use('/api/auth', authRouter);
-app.use('/api/post', authenticateUser, postRouter);
+app.use('/api/user', userRouter);
+app.use('/api/posts', authenticateUser, postRouter);
 
 app.use('*', (req, res) => {
 	console.log('req.baseUrl', req.baseUrl);

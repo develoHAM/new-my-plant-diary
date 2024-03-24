@@ -46,7 +46,7 @@ export const getUser = async () => {
 export const validateEmail = async (useremail: string) => {
 	try {
 		console.log('SERVERDOMAIN', SERVERDOMAIN);
-		const response = await axios.get(`${SERVERDOMAIN}/user/email/${useremail}`);
+		const response = await axios.get(`${SERVERDOMAIN}/user/email/${useremail}/availability`);
 		const { result, message } = response.data;
 		return response.data;
 	} catch (error) {
@@ -103,7 +103,7 @@ export const deleteUser = async () => {
 
 export const postPost = async (postData: FormData) => {
 	try {
-		const response = await axios.post(`${SERVERDOMAIN}/post`, postData, {
+		const response = await axios.post(`${SERVERDOMAIN}/posts`, postData, {
 			withCredentials: true,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -120,7 +120,7 @@ export const postPost = async (postData: FormData) => {
 
 export const getPosts = async () => {
 	try {
-		const response = await axios.get(`${SERVERDOMAIN}/post`, {
+		const response = await axios.get(`${SERVERDOMAIN}/posts`, {
 			withCredentials: true,
 		});
 		return response.data;
@@ -134,7 +134,7 @@ export const getPosts = async () => {
 
 export const getPost = async (postId: number) => {
 	try {
-		const response = await axios.get(`${SERVERDOMAIN}/post/${postId}`, {
+		const response = await axios.get(`${SERVERDOMAIN}/posts/${postId}`, {
 			withCredentials: true,
 		});
 		return response.data;
@@ -146,9 +146,9 @@ export const getPost = async (postId: number) => {
 	}
 };
 
-export const patchPost = async (postId: number, postData: FormData) => {
+export const putPost = async (postId: number, postData: FormData) => {
 	try {
-		const response = await axios.patch(`${SERVERDOMAIN}/post/${postId}?location=posts`, postData, {
+		const response = await axios.put(`${SERVERDOMAIN}/posts/${postId}?location=posts`, postData, {
 			withCredentials: true,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -165,7 +165,7 @@ export const patchPost = async (postId: number, postData: FormData) => {
 
 export const deletePost = async (postId: number) => {
 	try {
-		const response = await axios.delete(`${SERVERDOMAIN}/post/${postId}`, {
+		const response = await axios.delete(`${SERVERDOMAIN}/posts/${postId}`, {
 			withCredentials: true,
 		});
 		return response.data;

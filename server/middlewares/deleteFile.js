@@ -84,10 +84,6 @@ export const deleteFile = async (req, res, next) => {
 			if (!req.file && !req.body.userInfo) {
 				return next();
 			}
-			// 사진을 안올리고, 기존 사진 삭제만
-			//!req.file, req.body.userInfo
-			// 사진을 새로 올렸고, 기존 사진 삭제
-			// req.file, !req.body.userInfo
 
 			if (req.file || req.body.userInfo) {
 				const imgSRC = req.user.profile_pic;
@@ -111,69 +107,8 @@ export const deleteFile = async (req, res, next) => {
 				});
 			}
 		}
-		// if (req.user.profile_pic == env.DEFAULT_PROFILE_IMG_SRC) {
-		// 	return next();
-		// }
 	} catch (error) {
 		console.log(error);
 		return res.sendStatus(500);
 	}
 };
-
-// export const deleteFile1 = async (req, res, next) => {
-// 	if (!req.file) {
-// 		console.log('deleteFile req.body ==', req.body);
-// 		const { img } = JSON.parse(req.body);
-// 		if (img) {
-// 			console.log('YES IMG');
-// 			return next();
-// 		}
-// 		console.log('NO IMG');
-// 		const postId = Number(req.params.id);
-// 		const post = await Models.Posts.findByPk(postId);
-// 		if (!post) {
-// 			return res.sendStatus(404);
-// 		}
-
-// 		return next();
-// 	}
-// 	if (req.user.profile_pic == env.DEFAULT_PROFILE_IMG_SRC) {
-// 		return next();
-// 	}
-// 	try {
-// 		const location = req.query.location || 'default';
-// 		let imgSRC;
-// 		if (req.params.id) {
-// 			const postId = Number(req.params.id);
-// 			const post = await Models.Posts.findByPk(postId);
-// 			if (!post) {
-// 				return res.sendStatus(404);
-// 			}
-// 			if (!post.img) {
-// 				return next();
-// 			}
-// 			imgSRC = post.img;
-// 		} else {
-// 			imgSRC = req.user.profile_pic;
-// 		}
-// 		const objectKey = new URL(imgSRC).pathname.substring(1);
-
-// 		console.log('objectKey', objectKey);
-// 		const params = {
-// 			Bucket: env.S3_BUCKET,
-// 			Key: objectKey,
-// 		};
-// 		S3.deleteObject(params, (error, data) => {
-// 			if (error) {
-// 				console.log('error', error);
-// 				return res.sendStatus(500);
-// 			} else {
-// 				console.log('data', data);
-// 				return next();
-// 			}
-// 		});
-// 	} catch (error) {
-// 		console.log(error);
-// 		return res.sendStatus(500);
-// 	}
-// };

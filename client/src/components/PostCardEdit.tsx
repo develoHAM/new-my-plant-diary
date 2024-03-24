@@ -4,7 +4,7 @@ import { PostCardEditProps, PostEdit, post } from '../data/constants/types/post'
 import { editPostFormFields } from '../data/constants/types/post';
 import { useRecoilState } from 'recoil';
 import { userPostsState } from '../utils/state';
-import { patchPost, getPosts, deletePost, postPost } from '../utils/axios';
+import { putPost, getPosts, deletePost, postPost } from '../utils/axios';
 import ImageCropper from './ImageCropper';
 import { CropperState } from '../data/constants/types/image';
 import dayjs from 'dayjs';
@@ -157,7 +157,7 @@ export default function PostCardEdit({ post, setIsEditing }: PostCardEditProps) 
 		};
 		formData.append('postData', JSON.stringify(postData));
 
-		const { result, message, data } = await patchPost(post.id, formData);
+		const { result, message, data } = await putPost(post.id, formData);
 		if (result) {
 			const response = await getPosts();
 			handleCancelEdit();

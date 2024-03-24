@@ -34,23 +34,6 @@ const S3Storage = multerS3({
 		const filePath = `uploads/${req.user.id}/${location}/${Date.now()}.${extension}`;
 		cb(null, filePath);
 	},
-	// transforms: [
-	// 	{
-	// 		id: 'resized',
-	// 		key: function (req, file, cb) {
-	// 			const location = req.query.location || 'default'; // profile | posts
-	// 			const extension = file.originalname.split('.').pop();
-	// 			const filePath = `uploads/${req.user.id}/${location}/${Date.now()}.${extension}`;
-	// 			cb(null, filePath);
-	// 		},
-	// 		transform: function (req, file, cb) {
-	// 			const width = Number(req.query.width) || 100;
-	// 			const height = Number(req.query.height) || 100;
-	// 			cb(null, sharp().resize(width, height, { fit: 'inside' }));
-	// 			cb(null);
-	// 		},
-	// 	},
-	// ],
 });
 
 const upload = multer({ storage: env.NODE_ENV == 'development' ? localStorage : S3Storage });

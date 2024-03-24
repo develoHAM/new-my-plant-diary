@@ -41,6 +41,7 @@ export const __NavLink = styled(Nav.Link)`
 	font-size: 1rem;
 	color: ${CSS.BACKGROUND_PRIMARY};
 	text-decoration: none;
+	white-space: nowrap;
 	&.active {
 		color: ${CSS.BLACK};
 		text-decoration: underline;

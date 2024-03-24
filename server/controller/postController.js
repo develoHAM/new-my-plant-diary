@@ -35,7 +35,7 @@ export const get_post = async (req, res) => {
 		if (post) {
 			return res.status(200).json({ result: true, message: `${postId}번 게시글 불러오기 성공`, data: post });
 		} else {
-			return res.status(200).json({ result: true, message: '게시블이 존재하지 않습니다.', data: null });
+			return res.status(200).json({ result: true, message: '게시글이 존재하지 않습니다.', data: null });
 		}
 	} catch (error) {
 		console.log(error);
@@ -71,7 +71,7 @@ export const post_post = async (req, res) => {
 	}
 };
 
-export const patch_post = async (req, res) => {
+export const put_post = async (req, res) => {
 	try {
 		if (!req.params.id) {
 			return res.sendStatus(400);
