@@ -16,6 +16,6 @@ db.Users = UserModel(sequelize, Sequelize);
 db.Posts = PostModel(sequelize, Sequelize);
 
 db.Users.hasMany(db.Posts, { foreignKey: 'writer_email', sourceKey: 'email' });
-db.Posts.belongsTo(db.Users, { foreignKey: 'writer_email', targetKety: 'email' });
+db.Posts.belongsTo(db.Users, { foreignKey: 'writer_email', targetKey: 'email' });
 
 export default db;
