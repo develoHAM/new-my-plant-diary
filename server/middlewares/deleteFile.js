@@ -16,7 +16,7 @@ export const deleteFile = async (req, res, next) => {
 		const location = paths[1];
 		console.log('location', location);
 
-		if (location == 'post') {
+		if (location == 'posts') {
 			const postId = Number(req.params.id);
 			const post = await Models.Posts.findByPk(postId);
 			if (!post) {
@@ -45,36 +45,38 @@ export const deleteFile = async (req, res, next) => {
 				});
 			}
 
-			if (req.method == 'PATCH') {
-				const patchData = JSON.parse(req.body.postData);
-				if (location == 'post') {
-					//기존 파일 유지
-					if (!req.file && patchData.img) {
+			if (req.method == 'PUT') {
+				const putData = JSON.parse(req.body.postData);
+				//기존 파일 유지
+				if (!req.file && putData.img) {
+					return next();
+				}
+
+				if (putData.img == post.img) {
+					return next();
+				}
+
+				//파일 안올리고 기존 파일 삭제만 혹은 파일 올리고 기존 파일 삭제
+				if ((!req.file && !putData.img) || req.file) {
+					const imgSRC = post.img;
+					if (!imgSRC) {
 						return next();
 					}
+					const objectKey = new URL(imgSRC).pathname.substring(1);
+					const params = {
+						Bucket: env.S3_BUCKET,
+						Key: objectKey,
+					};
 
-					//파일 안올리고 기존 파일 삭제만 혹은 파일 올리고 기존 파일 삭제
-					if ((!req.file && !patchData.img) || req.file) {
-						const imgSRC = post.img;
-						if (!imgSRC) {
+					S3.deleteObject(params, (error, data) => {
+						if (error) {
+							console.log('error', error);
+							return res.sendStatus(500);
+						} else {
+							console.log('data', data);
 							return next();
 						}
-						const objectKey = new URL(imgSRC).pathname.substring(1);
-						const params = {
-							Bucket: env.S3_BUCKET,
-							Key: objectKey,
-						};
-
-						S3.deleteObject(params, (error, data) => {
-							if (error) {
-								console.log('error', error);
-								return res.sendStatus(500);
-							} else {
-								console.log('data', data);
-								return next();
-							}
-						});
-					}
+					});
 				}
 			}
 		}

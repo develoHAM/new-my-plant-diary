@@ -144,10 +144,6 @@ export default function PostCardEdit({ post, setIsEditing }: PostCardEditProps) 
 			return;
 		}
 		const formData = new FormData();
-		if (croppedImage) {
-			formData.append('file', croppedImage);
-		}
-
 		const postData = {
 			date: values.date,
 			title: values.title,
@@ -156,7 +152,9 @@ export default function PostCardEdit({ post, setIsEditing }: PostCardEditProps) 
 			img: postEdit.img,
 		};
 		formData.append('postData', JSON.stringify(postData));
-
+		if (croppedImage) {
+			formData.append('file', croppedImage);
+		}
 		const { result, message, data } = await putPost(post.id, formData);
 		if (result) {
 			const response = await getPosts();
@@ -204,6 +202,7 @@ export default function PostCardEdit({ post, setIsEditing }: PostCardEditProps) 
 	// }, [selectedImage]);
 
 	useEffect(() => {
+		console.log('postEdit', postEdit);
 		if (croppedImage) {
 			setCroppedImageURL(URL.createObjectURL(croppedImage));
 		}

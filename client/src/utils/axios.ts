@@ -148,7 +148,7 @@ export const getPost = async (postId: number) => {
 
 export const putPost = async (postId: number, postData: FormData) => {
 	try {
-		const response = await axios.put(`${SERVERDOMAIN}/posts/${postId}?location=posts`, postData, {
+		const response = await axios.put(`${SERVERDOMAIN}/posts/${postId}`, postData, {
 			withCredentials: true,
 			headers: {
 				'Content-Type': 'multipart/form-data',

@@ -73,6 +73,7 @@ export const post_post = async (req, res) => {
 
 export const put_post = async (req, res) => {
 	try {
+		console.log('put_post');
 		if (!req.params.id) {
 			return res.sendStatus(400);
 		}
@@ -109,6 +110,7 @@ export const put_post = async (req, res) => {
 
 export const delete_post = async (req, res) => {
 	try {
+		console.log('delete_post');
 		const postId = Number(req.params.id);
 		const rowAffected = await Models.Posts.destroy({
 			where: {

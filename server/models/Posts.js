@@ -21,6 +21,16 @@ const PostModel = (sequelize, Sequelize) => {
 		date: {
 			type: Sequelize.DataTypes.STRING(100),
 		},
+		writer_email: {
+			type: Sequelize.DataTypes.STRING(),
+			allowNull: false,
+			references: {
+				model: 'users',
+				key: 'email',
+			},
+			onUpdate: 'CASCADE',
+			onDelete: 'CASCADE',
+		},
 	});
 };
 
