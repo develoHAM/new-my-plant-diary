@@ -11,7 +11,7 @@ import Stack from 'react-bootstrap/Stack';
 export const __PageContainer = styled(Container)`
 	padding: 3rem 0 0 0;
 	background-color: ${CSS.BACKGROUND_PRIMARY};
-	height: calc(100vh - 3rem);
+	min-height: calc(100vh - 3rem);
 `;
 
 export const __PageRow = styled(Row)`
