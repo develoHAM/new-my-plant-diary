@@ -6,7 +6,7 @@
   <p>진행 기간: 2023/10/11 → 2023/10/19</p>
   <p>최근 리팩토링: 2024/03/26</p>
   <br>
-  <a href="https://myplantdiary.ddns.net/">🔗 포트폴리오 링크</a>
+  <a href="https://develoham.notion.site/My-Plant-Diary-ef7e7ce33e0047bbac97560808d66edf">🔗 포트폴리오 링크</a>
   <br>
   <a href="https://myplantdiary.ddns.net/">🔗 배포 링크</a>
   <br>
