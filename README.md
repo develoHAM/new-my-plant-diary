@@ -8,7 +8,7 @@
   <br>
   <a href="https://develoham.notion.site/My-Plant-Diary-ef7e7ce33e0047bbac97560808d66edf">🔗 포트폴리오 링크</a>
   <br>
-  <a href="https://myplantdiary.ddns.net/">🔗 배포 링크</a>
+  <a href="https://plant-diary.ddns.net/">🔗 배포 링크</a>
   <br>
   <br>
   <p>테스트 계정</p>
